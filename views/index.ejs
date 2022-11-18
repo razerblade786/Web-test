@@ -1,220 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>U Find Meヾ(≧▽≦*)o</title>
-  <style>
-    /* 全局 */
-    *{
-      margin: 0;
-      padding: 0;
-    }
-    .website{
-      color: salmon;
-      font-size: 14px;
-      font-weight: 500;
-    }
-    /* 头部 */
-    header{
-      width: 100%;
-      height: 200px;
-      background: lightgoldenrodyellow;
-    }
-    
-    img{
-      width: 300px;
-      height: 200px;
-      margin-left: 30px;
-      float: left;
-    }
-    nav {
-      float: left;
-      margin-left: 30px;
-      color: salmon;
-    }
-    nav > h1 {
-      margin-top: 10px;
-      font-size: 36px;
-      font-weight: 200;
-    }
-    nav > h2,h4 {
-      margin-top: 15px;
-    }
-    /* 正文 */
-    section{
-      width: 100%;
-      height: 800px;
-      background: #eae6e666;
-      position: relative;
-    }
-    /* 侧边 */
-    .sideBar{
-      width: 300px;
-      height: 100%;
-      background: #9adab599;
-      margin-left: 30px;
-    }
-    .sideBar > .personalInfo,.awards{
-      padding-left: 20px;
-    }
-    .sideBar > .selfEva{
-      padding: 0 5px;
-    }
+  <%- include('partials/head.ejs') %>
+  <body>
+    <%- include('partials/nav.ejs') %>
 
-    .sideBar > div > h3{
-      color: brown;
-      font-weight: 500;
-      margin: 15px;
-    }
-    .personalInfo{
-      padding: 5px;
-    }
-    .personalInfo > ul > li{
-      margin-top: 8px;
-    }
-    .awards > ul > li{
-      margin-top: 8px;
-    }
-    /*主要内容*/
-    .content{
-      position: absolute;
-      top: 0;
-      left: 330px;
-    }
-    .content > div{
-      margin-top: 15px;
-      margin-left: 15px;
-    }
-    .content > div > h3{
-      margin-top: 20px;
-      margin-bottom: 15px;
-      color: brown;
-      font-weight: 500;
-    }
-    .education > div{
-      margin-bottom: 10px;
-    }
-    .education .para{
-      font-size: 18px;
-      font-family: monospace;
-    }
-    .education .para > i,span{
-      font-size: 12px;
-      margin-left: 10px;
-    }
-    .jobExp > div > p,ol{
-      margin-bottom: 10px;
-      font-size: 20px;
-      font-family: monospace;
-    }
-    .jobExp > div > ol{
-      margin-left: 30px;
-    }
-  a:link {
-	text-decoration: none;
-	color: #000000;
-}
-a:visited {
-	text-decoration: none;
-	color: #000000;
-}
-a:hover {
-	text-decoration: none;
-	color: #000000;
-}
-a:active {
-	text-decoration: none;
-	color: #000000;
-}
-  </style>
-</head>
-<body>
-  <table width="500" border="0">
-    <tbody>
-      <tr>
-        <th scope="col"><a href="/index">Home</a>&nbsp;</th>
-        <th scope="col"><a href="/about">About Me</a>&nbsp;</th>
-        <th scope="col"><a href="/project">Projects</a>&nbsp;</th>
-        <th scope="col"><a href="/connect">Contact Me</a>&nbsp; </th>
-      </tr>
-    </tbody>
-  </table>
-  <!-- Header -->
-  <header>
-      <img src="100.jpg">
-      <nav>
-        <h1>Hao</S></h1>
-        <h2>Self information(●'◡'●)</h2>
-      </nav>
-    </div>
-  </header>
+    <div class="blogs content">
+      <h2>All Blogs</h2>
 
-  <!-- Content -->
-  <section>
-    <!-- SideBar -->
-    <div class="sideBar">
-      <div class="personalInfo">
-        <h3>information(*/ω＼*)</h3>
-        <ul>
-          <li>International student</li>
-          <li>Phone： 9059xx7785</li>
-          <li>Email： hao.song@ontariotechu.net</li>
-        </ul>
-      </div>      
-      <div class="selfEva">
-        <h3>Self introduction(～￣▽￣)</h3>
-        <p>
-            Welcome, this is Song Hao, now studying at Ontario tech University. is a sophomore majoring in network engineering, graduating in 2025.
-        </p>
-      </div>
-      <div class="awards">
-        <h3>Experience At School(≧∇≦)ﾉ</h3>
-        <ul>
-          <li>2021-05 Get offer</li>
-          <li>2021-08 Come to Canada</li>
-          <li>2021-09 Officially enrolled at the Ontario Tech University</li>
-          <li>2022-09 Start Reading Second years</p>
-          </li>
-        </ul>
-      </div>
-      <div class="skill"></div>
-    </div>
-    <!-- MainContents -->
-    <div class="content">
-      <div class="education">
-        <h3>Education Backgroundㄟ(≧◇≦)ㄏ</h3>
-        <div>
-          <p class="para">Studied at XXXXXXXXXXX No. 4 Senior High School   <span>2018-06 To 2021-05</span></p>
-        </div>
-        <div>
-          <p class="para">Ontario Tech University<span>2021-9 To Now</span></p>
-          <p class="para">Subject: Networking and Business</p>
-          <p class="subjects"></p>
-        </div>
-      </div>
-      <div class="jobExp">
-        <h3>Project Experienceヾ(•ω•`)</h3>
-        <div>
-          <p>Complete the construction and maintenance of personal blog website independently</p>
-          <ol>
-            <li>Buy Alibaba Cloud CentOS Server</li>
-            <li>Install LAMP, configure development environment, DNS</li>
-            <li>Independently launch the website and undertake subsequent maintenance work</li>
-          </ol>
-          <p>Use technical points:<br>
-            CentOS,PHP,HTML/JS/CSS
-            <br>
-            <br>
-            <br>
-            <br>
-            ☆*: .｡. o(≧▽≦)o .｡.:*☆Website: qingmoer.top
-          </p>
-        </div>
-      </div>
-      </div>
+      <% if(blogs.length > 0) { %> <% blogs.forEach(blog => { %>
+
+      <a href="/blogs/<%= blog.id %> " class="single">
+        <h3 class="title"><%= blog.title %></h3>
+        <p class="snippet"><%= blog.snippet %></p>
+        <p class="body"><%= blog.body %></p>
+      </a>
+
+      <% }) %> <% } else { %>
+      <p>There are no blogs to display</p>
+      <% } %>
     </div>
 
-  </section>
-</body>
+    <%- include('partials/footer.ejs') %>
+  </body>
 </html>
