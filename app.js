@@ -1,41 +1,98 @@
-const express = require("express");
-const morgan = require("morgan"); 
-const mongoose = require("mongoose");
-const blogRoutes = require("./routes/blogRoutes");
-const dotenv = require("dotenv");
-dotenv.config();
+const express = require('express');
 const app = express();
+const path = require('path');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+const expressLayouts = require('express-ejs-layouts');
+const passport = require('passport');
+const flash = require('connect-flash');
+const session = require('express-session');
 
-//connect to mongoDB
-const connectionParams = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-};
-const dbURI = "mongodb+srv://root:rootmoer@cluster0.5z0oflj.mongodb.net/test";
-mongoose
-  .connect(dbURI, connectionParams)
-  .then((result) => app.listen(80))
-  .catch((err) => console.log(err));
-
-app.set("view engine", "ejs");
+// global middleware
+// 1. body-parser to parse request body
+// 2. override HTTP methods
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride('_method'));
 
 
-app.use(express.static("public"));
+// routing middleware
+const indexRouter = require('./routes/index.js');
+const productRouter = require('./routes/products.js');
+const showRouter = require('./routes/show.js');
+const editRouter = require('./routes/edit.js');
+const createRouter = require('./routes/create.js');
+const deleteRouter = require('./routes/delete.js');
+
+mongoose.connect('mongodb://127.0.0.1:27017/login')
+    .then(() => {
+      console.log('Mongo connection open');
+    })
+    .catch(err => {
+      console.log('Mongo Connection Error', err);
+    });
+
+// routers
+app.use('/', indexRouter);
+
+app.use('/products', productRouter);
+app.use('/products', showRouter)
+app.use('/products', createRouter);
+app.use('/products', editRouter);
+app.use('/products', deleteRouter);
+
+app.use('/edit', editRouter);
+app.use('/new', createRouter);
+
+app.use('/delete', deleteRouter);
+
+
+// 1. set view path, __dirname references current directory
+// 2. set view engine to ejs
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+// EJS
+app.use(expressLayouts);
+app.set('view engine', 'ejs');
+
+// Express body parser
 app.use(express.urlencoded({ extended: true }));
-app.use(morgan("dev"));
 
-app.get("/", (req, res) => {
-  res.redirect("/blogs");
+// Express session
+app.use(
+  session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+  })
+);
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect flash
+app.use(flash());
+
+// Global variables
+app.use(function(req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
 });
 
-app.get("/about", (req, res) => {
-  res.render("about", { title: "About" });
+// Routes
+app.use('/', require('./routes/index.js'));
+app.use('/users', require('./routes/users.js'));
+
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, console.log(`Server running on  ${PORT}`));
+
+app.listen(process.env.PORT || 3030, () => {
+    console.log('Localhost server listening');
 });
 
-//blog route
-app.use("/blogs", blogRoutes);
-
-//404 page
-app.use((req, res) => {
-  res.status(404).render("404", { title: "404" });
-});
+module.exports = app;
