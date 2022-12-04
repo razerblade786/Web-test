@@ -11,12 +11,12 @@
     <% for(let product of products) { %>
       <li> 
         <%= product.name %> 
-        <a href="/edit/<%= product.id %>">Edit</a> 
-        <a href="/products/<%= product.id %>">View</a>
-        <a href="/delete/<%= product.id %>">Delete</a>
+        <a href="#/edit" class="btn btn-success">EDIT</a>
+        <a href="#/products" class="btn btn-success">VIEW</a>
+        <a href="#/delete" class="btn btn-success">DELETE</a>
       </li>
     <% } %>
   </ul>
-  <a href="/new">Add Product</a>
+  <<a href="#/new" class="btn btn-success">DELETE</a>
   </body>
 </html>
