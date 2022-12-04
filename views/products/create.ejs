@@ -8,7 +8,11 @@
     <title>Produce Stand CRUD</title>
 </head>
 <body>
-<h1>Create New Item:</h1>
+<div class="container mt-3">
+  <h1>Display Headings</h1>
+  <p>Create New Item:</p>
+  <h1 class="display-1"></h1>
+</div>
 <form action="/products/<%= product %>" method="POST">
     <label for="name">Product Name: </label>
     <input type="text" name="name" placeholder="Product Name"> <br><br>
@@ -23,7 +27,7 @@
         <% } %>
     </select>
 
-    <button type="submit">Add Product</button>
+    <input type="submit" class="btn btn-success" value="Add Product">
 </form>
 </body>
 </html>
