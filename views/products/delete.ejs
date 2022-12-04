@@ -8,9 +8,11 @@
     <title>Product Stand CRUD</title>
 </head>
 <body>
-<h1>Delete Product</h1>
+<div class="container mt-3">
+  <h1 class="display-2">DELETE PRODUCT</h1>
+</div>
 <form action="/products/<%= product.id %>?_method=DELETE" method="POST">
-    <button type="submit">Delete</button>
+    <input type="submit" class="btn btn-success" value="DELETE">
     <p>*<h5>This can not be undone</h5>*</p>
 </form>
 </body>
