@@ -8,14 +8,18 @@
     <title>Produce Stand CRUD</title>
 </head>
 <body>
-<h1>Edit Details</h1>
+<div class="alert alert-success">
+  <strong>You</strong> should <a href="#" class="alert-link">EDIT DETAILS</a>.
+</div>
 <a href="/products">Cancel</a>
 <p>Editing "<%= product.name %>"</p>
 <form action="/products/<%= product.id %>?_method=PUT" method="POST">
-    <label for="productName">Product Name:</label>
+   <p class="h6">Product name</p>
     <input type="text" name="name" id="product_name" value="<%= product.name %>">
 
-    <label for="productPrice">Product Price:</label>
+   <div class="mt-4 p-5 bg-primary text-white rounded">
+  <p class="h6">Product Price</p>
+</div>
     <input type="text" name="price" id="product_price" value="<%= product.price %>">
 
     <label for="category">Category:</label>
@@ -25,7 +29,7 @@
                     %></option>
             <% } %>
     </select>
-    <button type="submit">Submit</button>
+    <input type="submit" class="btn btn-success" value="Submit Button">
 
 </form>
 </body>
